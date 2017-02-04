@@ -52,7 +52,7 @@
     }
 
     /* Add a "checked" mark when clicked on */
-    ul li.checked::before {
+    /*ul li.checked::before {
       content: '';
       position: absolute;
       border-color: #fff;
@@ -63,7 +63,7 @@
       transform: rotate(45deg);
       height: 15px;
       width: 7px;
-    }
+    }*/
 
     /* Style the close button */
     .close {
@@ -124,7 +124,7 @@
 <body>
 
     <div id="myDIV" class="header">
-      <h2 >My To Do List</h2>
+      <h2 >My TODO List</h2>
       <input type="text" id="myInput" placeholder="Title...">
       <span onclick="newElement()" class="addBtn">Add</span>
     </div>
@@ -182,7 +182,7 @@
       document.getElementById("myInput").value = "";
 
       var span = document.createElement("SPAN");
-      var txt = document.createTextNode("\u00D7");
+      // var txt = document.createTextNode("\u00D7");
       span.className = "close";
       span.appendChild(txt);
       li.appendChild(span);
