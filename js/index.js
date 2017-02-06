@@ -74,12 +74,12 @@ function populateTodoList(){
         // li.appendChild(document.createTextNode(t.Title));
         // ul.appendChild(li);
         var t = "<li>"+"<h3 class = \""+isDone(t)+ "\">"+t.Title+"</h3>"+t.Description+"</li>";
-        t += '<input type="checkbox" name="checked" onclick="checkBox('+i+' )"/>Done<br>';
+        t += '<input type="checkbox" name="checked" onclick="checkBox('+i+',this )"/>Done<br>';
         ul.innerHTML += t;
     }
 }
-function checkBox (index){
-    // debugger;
+function checkBox (index,evnt){
+    console.log(evnt.checked);
     // todoArray[index].IsDone = todoArray[index].IsDone ^ 1;
     //populateTodoList();
 }
