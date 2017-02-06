@@ -1,9 +1,11 @@
 var modalBtn = document.getElementById("openModal");
 var modal = document.getElementById("myModal");
 var span = document.getElementById("closeButton");
+var ul = document.getElementById("todoList");
 
 var todoArray = [];
 // todoArray = JSON.parse(localStorage.getItem("todos"));
+
 function loadData(){
     if(localStorage.todos){
         todoArray = JSON.parse(localStorage.todos);
@@ -42,21 +44,46 @@ function submitClicked(){
      todoArray.push(getNewObject(newTitle, newDescription, false));
      var x = document.createElement("div");
     //  console.log(todoArray.length);
-     x.textContent = todoArray;
-     document.body.appendChild(x);
-     localStorage.setItem("todos", JSON.stringify(todoArray));
+     
+     
      closeModal();
      populateTodoList();
+     storeTodoArray();
     //  debugger;
 }
 
+ul.addEventListener('click', function(event){
+    if(event.target.tagName==='LI'){
+        // alert(event.target.innerHTML);
+    }
+}, false);
+
+function isDone(t){
+    var decor="";
+    if(t.IsDone){
+        decor = "todo-done";
+    }
+    return decor;
+}
 function populateTodoList(){
-    var ul = document.getElementById("todoList");
+    
     ul.innerHTML = "";
     for( var i=0; i<todoArray.length; i++){
         var t = todoArray[i];
-        var li = document.createElement("li");
-        li.appendChild(document.createTextNode(t.Title));
-        ul.appendChild(li);
+        // var li = document.createElement("li");
+        // li.appendChild(document.createTextNode(t.Title));
+        // ul.appendChild(li);
+        var t = "<li>"+"<h3 class = \""+isDone(t)+ "\">"+t.Title+"</h3>"+t.Description+"</li>";
+        t += '<input type="checkbox" name="checked" onclick="checkBox('+i+' )"/>Done<br>';
+        ul.innerHTML += t;
     }
+}
+function checkBox (index){
+    // debugger;
+    // todoArray[index].IsDone = todoArray[index].IsDone ^ 1;
+    //populateTodoList();
+}
+
+function storeTodoArray(){
+    localStorage.setItem("todos", JSON.stringify(todoArray));
 }

@@ -3,23 +3,25 @@
 <head>
   <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
-  
-<body class="margin-page" onload="loadData()">
-  <div id="myDIV" class="header">
-    <h2 style="color: white;">My To Do List</h2>
-    <input type="text" id="mySearch" placeholder="Search...">
-    <button onclick="searchElement()" class="addBtn">Search</button>
-  </div>
-  <button id="openModal" >Add</button>
+<div class="content-style">
+  <body class="margin-page" onload="loadData()">
+    <div id="myDIV" class="header">
+      <h2 style="color: white;">My To Do List</h2>
+      <input type="text" id="mySearch" placeholder="Search...">
+      <button onclick="searchElement()" class="addBtn">Search</button>
+    </div>
+    <button id="openModal" >Add</button>
 
-  <form>
-    <input type="radio" name="status" value="All">All<br>
-    <input type="radio" name="status" value="Done">Done<br>
-    <input type="radio" name="status" value="Undone">Undone<br>
-    <br>
-  </form>
+    <form >
+      <input type="radio" name="status" value="All">All
+      <input type="radio" name="status" value="Done">Done
+      <input type="radio" name="status" value="Undone">Undone
+      <br>
+    </form>
+</div>
 
-  <ul id = "todoList" >
+
+  <ul id = "todoList" class = "list-style">
 
   </ul>
 

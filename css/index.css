@@ -66,3 +66,15 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.list-style{
+    list-style: none;
+    padding: 0px;
+    overflow: y;
+}
+.todo-done{
+    text-decoration: line-through;
+}
+.content-style{
+    padding-top: 5px;
+    /*background: dodgerblue;*/
+}
