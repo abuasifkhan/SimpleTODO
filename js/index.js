@@ -47,8 +47,8 @@ function submitClicked(){
      
      
      closeModal();
-     populateTodoList();
      storeTodoArray();
+     populateTodoList();
     //  debugger;
 }
 
@@ -65,25 +65,46 @@ function isDone(t){
     }
     return decor;
 }
+function isChecked(t){
+    var decor="";
+    if(t.IsDone){
+        decor = "checked";
+    }
+    return decor;
+}
+function backgroundCol(t){
+    var decor="";
+    if(t.IsDone){
+        decor = "task-done";
+    }
+    return decor;
+}
+
 function populateTodoList(){
     
     ul.innerHTML = "";
     for( var i=0; i<todoArray.length; i++){
-        var t = todoArray[i];
+        var tmp = todoArray[i];
         // var li = document.createElement("li");
         // li.appendChild(document.createTextNode(t.Title));
         // ul.appendChild(li);
-        var t = "<li>"+"<h3 class = \""+isDone(t)+ "\">"+t.Title+"</h3>"+t.Description+"</li>";
-        t += '<input type="checkbox" name="checked" onclick="checkBox('+i+',this )"/>Done<br>';
+        var t = "<li class = "+ backgroundCol(tmp)+">"+"<h3 class = \""+isDone(tmp)+ "\">"+tmp.Title+"</h3>"+tmp.Description+"</li>";
+        t += '<input type="checkbox" name="checked" onclick="checkBox('+i+',this )" '+isChecked(tmp)+'/>Done<br>';
         ul.innerHTML += t;
     }
 }
 function checkBox (index,evnt){
     console.log(evnt.checked);
-    // todoArray[index].IsDone = todoArray[index].IsDone ^ 1;
-    //populateTodoList();
+    todoArray[index].IsDone = evnt.checked;
+    storeTodoArray();
+    populateTodoList();
 }
 
 function storeTodoArray(){
+    todoArray.sort(function(a,b){
+        if(a.Title>b.Title) return 1;
+        else if (a.Title<b.Title) return -1;
+        return 0;
+    });
     localStorage.setItem("todos", JSON.stringify(todoArray));
 }
