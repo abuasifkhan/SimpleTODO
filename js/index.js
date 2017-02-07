@@ -2,6 +2,7 @@ var modalBtn = document.getElementById("openModal");
 var modal = document.getElementById("myModal");
 var span = document.getElementById("closeButton");
 var ul = document.getElementById("todoList");
+var search = document.getElementById("mySearch");
 
 var todoArray = [];
 // todoArray = JSON.parse(localStorage.getItem("todos"));
@@ -88,8 +89,9 @@ function populateTodoList(){
         // var li = document.createElement("li");
         // li.appendChild(document.createTextNode(t.Title));
         // ul.appendChild(li);
-        var t = "<li class = "+ backgroundCol(tmp)+">"+"<h3 class = \""+isDone(tmp)+ "\">"+tmp.Title+"</h3>"+tmp.Description+"</li>";
-        t += '<input type="checkbox" name="checked" onclick="checkBox('+i+',this )" '+isChecked(tmp)+'/>Done<br>';
+        var t = "<li class = \"list-item\" \""+ backgroundCol(tmp)+"\" >"+"<h2 class = \"todo-title\" \""+isDone(tmp)+ "\">"+tmp.Title+"</h2>"+tmp.Description+'<br>';
+        t += '<input type="checkbox" name="checked" onclick="checkBox('+i+',this )" '+isChecked(tmp)+'/>Done';
+        t += "</li>";
         ul.innerHTML += t;
     }
 }
@@ -107,4 +109,18 @@ function storeTodoArray(){
         return 0;
     });
     localStorage.setItem("todos", JSON.stringify(todoArray));
+}
+
+search.onkeyup = function(){
+    var filter = search.value.toUpperCase();
+    var lis = document.getElementsByTagName('li');
+    for(var i=0;i<lis.length;i++){
+        var name = lis[i].getElementsByClassName('todo-title')[0].innerHTML;
+        if(name.toUpperCase().indexOf(filter)==0){
+            lis[i].style.display = 'list-item';
+        }
+        else{
+            lis[i].style.display = 'none';
+        }
+    }
 }
