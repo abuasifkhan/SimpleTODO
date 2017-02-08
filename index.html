@@ -12,10 +12,10 @@
     </div>
     <button id="openModal" >Add</button>
 
-    <form >
-      <input type="radio" name="status" value="All">All
-      <input type="radio" name="status" value="Done">Done
-      <input type="radio" name="status" value="Undone">Undone
+    <form id="filterStatus">
+      <input type="radio" name="status" value="All" onclick="onRadioButtonValueChange(value)" checked>All
+      <input type="radio" name="status" value="Done" onclick="onRadioButtonValueChange(value)" >Done
+      <input type="radio" name="status" value="Undone" onclick="onRadioButtonValueChange(value)">Undone
       <br>
     </form>
 </div>

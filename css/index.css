@@ -73,11 +73,12 @@
 }
 .todo-done{
     text-decoration: line-through;
+    color: white;
 }
 .content-style{
     padding-top: 5px;
     /*background: dodgerblue;*/
 }
 .task-done{
-    background: slategrey;
+    background-color: slategrey;
 }

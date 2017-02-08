@@ -3,6 +3,7 @@ var modal = document.getElementById("myModal");
 var span = document.getElementById("closeButton");
 var ul = document.getElementById("todoList");
 var search = document.getElementById("mySearch");
+var radioVal = 'All';
 
 var todoArray = [];
 // todoArray = JSON.parse(localStorage.getItem("todos"));
@@ -81,7 +82,26 @@ function backgroundCol(t){
     return decor;
 }
 
+// function getRadioVal(){
+//     var radioForm = document.forms[0].elements['status'];
+//     // var radioButtonName = 'status';
+//     // var radios = radioForm.element[radioButtonName];
+//     for(var i=0; i<radioForm.length; i++){
+//         if(radioForm[i].checked){
+//             radioVal = radioForm[i].value;
+//             break;
+//         }
+//     }
+// }
+
+function onRadioButtonValueChange(value){
+    radioVal = value;
+    console.log(radioVal);
+    populateTodoList();
+}
+
 function populateTodoList(){
+    // console.log(getRadioVal());
     
     ul.innerHTML = "";
     for( var i=0; i<todoArray.length; i++){
@@ -89,12 +109,39 @@ function populateTodoList(){
         // var li = document.createElement("li");
         // li.appendChild(document.createTextNode(t.Title));
         // ul.appendChild(li);
-        var t = "<li class = \"list-item\" \""+ backgroundCol(tmp)+"\" >"+"<h2 class = \"todo-title\" \""+isDone(tmp)+ "\">"+tmp.Title+"</h2>"+tmp.Description+'<br>';
-        t += '<input type="checkbox" name="checked" onclick="checkBox('+i+',this )" '+isChecked(tmp)+'/>Done';
-        t += "</li>";
-        ul.innerHTML += t;
+        // var t = "<li class = \"list-item\" \""+ backgroundCol(tmp)+"\" >"+"<h2 class = \"todo-title\" \""+isDone(tmp)+ "\">"+tmp.Title+"</h2>"+tmp.Description+'<br>';
+        // t += '<input type="checkbox" name="checked" onclick="checkBox('+i+',this )" '+isChecked(tmp)+'/>Done';
+        // t += "</li>";
+        if(radioVal=='All'){
+            showElement(tmp, i);
+        }
+        else if(radioVal=='Done'){
+            if(tmp.IsDone==true){
+                showElement(tmp,i);
+            }
+            
+        }
+        else{
+            if(tmp.IsDone==false){
+                showElement(tmp, i);
+            }
+        }
+
     }
 }
+
+function showElement(tmp, i){
+    var t = '<li class="list-item">';
+    t += '<div class="'+backgroundCol(tmp)+'">';
+    t += '<h2 class = "todo-title '+isDone(tmp)+'">';
+    t += tmp.Title;
+    t += '</h2>'
+    t += tmp.Description + '<br>';
+    t += '<input type="checkbox" name="checked" onclick="checkBox('+i+', this)" '+isChecked(tmp)+'/>Done';
+    t+='</div></li>'
+    ul.innerHTML += t;
+}
+
 function checkBox (index,evnt){
     console.log(evnt.checked);
     todoArray[index].IsDone = evnt.checked;
