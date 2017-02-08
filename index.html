@@ -7,10 +7,10 @@
   <body class="margin-page" onload="loadData()">
     <div id="myDIV" class="header">
       <h2 style="color: white;">My To Do List</h2>
-      <input type="text" id="mySearch" placeholder="Search...">
-      <button onclick="searchElement()" class="addBtn">Search</button>
+      <input type="text" name = "search" class = "search" id="mySearch" placeholder="Search...">
+      <!--<button onclick="searchElement()" class="addBtn">Search</button>-->
     </div>
-    <button id="openModal" >Add</button>
+    <button id="openModal" class="button-style button-add">Add</button>
 
     <form id="filterStatus">
       <input type="radio" name="status" value="All" onclick="onRadioButtonValueChange(value)" checked>All
@@ -33,13 +33,14 @@
       </div>
       
       <form class="form-padding">
-        <input type="text" id = "newTitle" name="Title" placeholder="Title" required autofocus><br>
-        <input type="text" id = "newDescription" name="Description" placeholder="Description"><br>
+        <input type="text" id = "newTitle" name="addNew" placeholder="Title" required autofocus><br>
+        <input type="text" id = "newDescription" name="addNew" placeholder="Description"><br>
 
-        <input type="button" value="Add" onclick="submitClicked()">
+        <input type="button" class="button-style button-add" name = "addNew" value="Add" onclick="submitClicked()">
         <!--<button onclick="submitClicked()">Add</button>-->
       </form> 
   </div>
+  
 
   </div>
 

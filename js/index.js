@@ -41,7 +41,10 @@ window.onclick = function(){
 function submitClicked(){
     var newTitle = document.getElementById("newTitle").value;
     var newDescription = document.getElementById("newDescription").value;
-    
+    if(newTitle==""){
+        alert("Title cannot be empty!");
+        return;
+    }
     
      todoArray.push(getNewObject(newTitle, newDescription, false));
      var x = document.createElement("div");
@@ -138,8 +141,16 @@ function showElement(tmp, i){
     t += '</h2>'
     t += tmp.Description + '<br>';
     t += '<input type="checkbox" name="checked" onclick="checkBox('+i+', this)" '+isChecked(tmp)+'/>Done';
+    t += '<button type="button" class="button-style button-edit" onClick="deleteTask('+i+')">Edit</button>';
+    t += '<button type="button" class="button-style button-delete"  onClick="deleteTask('+i+')">Delete</button>'
     t+='</div></li>'
     ul.innerHTML += t;
+}
+
+function deleteTask(index){
+    todoArray.splice(index, 1);
+    storeTodoArray();
+    populateTodoList();
 }
 
 function checkBox (index,evnt){
