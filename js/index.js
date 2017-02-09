@@ -135,13 +135,15 @@ function populateTodoList(){
 
 function showElement(tmp, i){
     var t = '<li class="list-item">';
-    t += '<div class="'+backgroundCol(tmp)+'">';
+    t += '<div class=" todo-item '+backgroundCol(tmp)+'">';
     t += '<h2 class = "todo-title '+isDone(tmp)+'">';
     t += tmp.Title;
     t += '</h2>'
-    t += tmp.Description + '<br>';
+    t += '<h4 class = "todo-title '+isDone(tmp)+'">';
+    t += tmp.Description;
+    t += '</h4>'
     t += '<input type="checkbox" name="checked" onclick="checkBox('+i+', this)" '+isChecked(tmp)+'/>Done';
-    t += '<button type="button" class="button-style button-edit" onClick="deleteTask('+i+')">Edit</button>';
+    t += '<button type="button" class="button-style button-edit">Edit</button>';
     t += '<button type="button" class="button-style button-delete"  onClick="deleteTask('+i+')">Delete</button>'
     t+='</div></li>'
     ul.innerHTML += t;
