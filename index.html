@@ -1,50 +1,68 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" type="text/css" href="css/index.css">
-</head>
-<div class="content-style">
-  <body class="margin-page" onload="loadData()">
-    <div id="myDIV" class="header">
-      <h1 style="color: white; ">My To Do List</h1>
-      <input type="text" name = "search" class = "search" id="mySearch" placeholder="Search...">
-      <!--<button onclick="searchElement()" class="addBtn">Search</button>-->
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+  </head>
+    
+  <body class="margin-page" onload="Controller.init()">
+
+    <div class="content-style">
+        <div id="header-div" class="header">
+          <h1 style="color: white; ">My To Do List</h1>
+          <input type="text" name = "search" class = "search" id="title-search" placeholder="Search...">
+          <!--<button onclick="searchElement()" class="addBtn">Search</button>-->
+        </div>
+        <button id="todo-add-modal-button" class="button-style button-add" onClick = "Controller.openAddModal()">Add</button>
+
+        <form id="filter-status">
+          <input type="radio" name="status" value="All" onclick="Controller.onRadioButtonValueChange(value)" checked>All
+          <input type="radio" name="status" value="Done" onclick="Controller.onRadioButtonValueChange(value)" >Done
+          <input type="radio" name="status" value="Undone" onclick="Controller.onRadioButtonValueChange(value)">Undone
+          <br>
+        </form>
     </div>
-    <button id="openModal" class="button-style button-add">Add</button>
-
-    <form id="filterStatus">
-      <input type="radio" name="status" value="All" onclick="onRadioButtonValueChange(value)" checked>All
-      <input type="radio" name="status" value="Done" onclick="onRadioButtonValueChange(value)" >Done
-      <input type="radio" name="status" value="Undone" onclick="onRadioButtonValueChange(value)">Undone
-      <br>
-    </form>
-</div>
 
 
-  <ul id = "todoList" class = "list-style">
+    <ul id = "todo-list" class = "list-style">
 
-  </ul>
+    </ul>
 
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span id = "closeButton" class="close">&times;</span>
-        <h2>Add New TODO</h2>
+    <div id="add-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span id = "close-button" class="close" onClick = "closeModal()">&times;</span>
+          <h2 id="modal-title">Add New TODO</h2>
+        </div>
+        
+        <form class="form-padding">
+          <input type="text" id = "new-title" name="addNew" placeholder="Title" required autofocus><br>
+          <input type="text" id = "new-description" name="addNew" placeholder="Description"><br>
+
+          <input type="button" class="button-style button-add" name = "addNew" value="Add" onclick="Controller.submitClicked()">
+          <!--<button onclick="submitClicked()">Add</button>-->
+        </form> 
       </div>
-      
-      <form class="form-padding">
-        <input type="text" id = "newTitle" name="addNew" placeholder="Title" required autofocus><br>
-        <input type="text" id = "newDescription" name="addNew" placeholder="Description"><br>
+    </div>
 
-        <input type="button" class="button-style button-add" name = "addNew" value="Add" onclick="submitClicked()">
-        <!--<button onclick="submitClicked()">Add</button>-->
-      </form> 
-  </div>
-  
+    <div id="edit-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span id = "edit-modal-close-button" class="close" onClick = "Controller.closeEditModal()">&times;</span>
+          <h2 id="edit-modal-title">Edit TODO</h2>
+        </div>
+        
+        <form class="form-padding">
+          <input type="text" id = "edit-title" name="addNew" placeholder="Title" required autofocus><br>
+          <input type="text" id = "edit-description" name="addNew" placeholder="Description"><br>
 
-  </div>
+          <input type="button" class="button-style button-add" name = "addNew" value="Save" onclick="Controller.modifyTodo()">
+          <!--<button onclick="submitClicked()">Add</button>-->
+        </form> 
+      </div>
+    </div>
 
-
-  <script src="js/index.js"></script>
-</body>
+    <script src = "js/names.js"></script>
+    <script src = "js/model.js"></script>
+    <script src = "js/index.js"></script>
+  </body>
 </html>
